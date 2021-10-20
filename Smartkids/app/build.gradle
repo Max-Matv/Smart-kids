@@ -1,0 +1,81 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk 30
+    buildFeatures{
+        viewBinding = true
+    }
+
+    defaultConfig {
+        applicationId "com.matveichuk.smartkids"
+        minSdk 21
+        targetSdk 30
+        versionCode 3
+        versionName '1.1'
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation 'com.google.android.gms:play-services-ads:20.4.0'
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
+    // LiveData
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
+    // Lifecycles only (without ViewModel or LiveData)
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+
+    // Saved state module for ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1")
+
+    // alternately - if using Java8, use the following instead of lifecycle-compiler
+    implementation("androidx.lifecycle:lifecycle-common-java8:2.3.1")
+
+    // optional - helpers for implementing LifecycleOwner in a Service
+    implementation("androidx.lifecycle:lifecycle-service:2.3.1")
+
+    // optional - ProcessLifecycleOwner provides a lifecycle for the whole application process
+    implementation("androidx.lifecycle:lifecycle-process:2.3.1")
+    // optional - ReactiveStreams support for LiveData
+    implementation("androidx.lifecycle:lifecycle-reactivestreams-ktx:2.3.1")
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // optional - Test helpers for LiveData
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+//    recyclerview
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
+    implementation "androidx.cardview:cardview:1.0.0"
+
+
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+
+}
