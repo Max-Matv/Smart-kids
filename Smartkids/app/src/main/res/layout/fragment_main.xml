@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".mainfragment.MainFragment">
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
+        app:flow_wrapMode="chain"
+        app:flow_firstHorizontalStyle="packed"
+        app:flow_lastHorizontalStyle="packed"
+        app:flow_verticalGap="25dp"
+        app:constraint_referenced_ids="animalVoice, whoSay, figure"/>
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/animalVoice"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        app:shapeAppearanceOverlay="@style/roundedImageView"
+        android:clickable="true"
+        android:focusable="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Голоса животных"
+        android:textStyle="bold"
+        android:textColor="@color/purpur"
+        app:layout_constraintTop_toBottomOf="@+id/animalVoice"
+        app:layout_constraintStart_toStartOf="@+id/animalVoice"
+        app:layout_constraintEnd_toEndOf="@+id/animalVoice"
+        android:textSize="@dimen/browser_actions_context_menu_min_padding"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/whoSay"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        app:shapeAppearanceOverlay="@style/roundedImageView"
+        android:clickable="true"
+        android:focusable="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Кто сказал?"
+        android:textStyle="bold"
+        android:textColor="@color/purpur"
+        app:layout_constraintTop_toBottomOf="@+id/whoSay"
+        app:layout_constraintStart_toStartOf="@+id/whoSay"
+        app:layout_constraintEnd_toEndOf="@+id/whoSay"
+        android:textSize="@dimen/browser_actions_context_menu_min_padding"/>
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/figure"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        app:shapeAppearanceOverlay="@style/roundedImageView"
+        android:clickable="true"
+        android:focusable="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Фигуры"
+        android:textStyle="bold"
+        android:textColor="@color/purpur"
+        app:layout_constraintTop_toBottomOf="@+id/figure"
+        app:layout_constraintStart_toStartOf="@+id/figure"
+        app:layout_constraintEnd_toEndOf="@+id/figure"
+        android:textSize="@dimen/browser_actions_context_menu_min_padding"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

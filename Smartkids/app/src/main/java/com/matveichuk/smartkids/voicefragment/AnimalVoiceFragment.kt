@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
+
 import com.matveichuk.smartkids.databinding.FragmentAnimalVoiceBinding
 
 
 import com.matveichuk.smartkids.voicefragment.adpter.VoiceAdapter
+
 import com.matveichuk.smartkids.voicefragment.viewmodel.VoiceViewModel
 
 

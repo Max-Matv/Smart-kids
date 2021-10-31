@@ -1,4 +1,4 @@
-package com.matveichuk.smartkids.voicefragment.SoundEngine
+package com.matveichuk.smartkids.SoundEngine
 
 import android.content.Context
 import android.media.AudioAttributes

@@ -1,4 +1,4 @@
-package com.matveichuk.smartkids.voicefragment.adpter
+package com.matveichuk.smartkids.secondvoicefragment.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,19 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.matveichuk.smartkids.R
 import com.matveichuk.smartkids.databinding.ItemBinding
-import com.matveichuk.smartkids.SoundEngine.SoundEngine
-import com.matveichuk.smartkids.voicefragment.data.VoiceData
-import com.matveichuk.smartkids.voicefragment.data.voiceList
+import com.matveichuk.smartkids.secondvoicefragment.data.SecondVoiceData
 
-class VoiceAdapter(val data: List<VoiceData>) : RecyclerView.Adapter<VoiceAdapter.MyViewHolder>() {
-    private var soundEngine = SoundEngine()
-
+class SecondVoiceAdapter(val data: List<SecondVoiceData>, val delegate: (SecondVoiceData) -> Unit) :
+    RecyclerView.Adapter<SecondVoiceAdapter.MyViewHolder>() {
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val binding = ItemBinding.bind(itemView)
-        fun bind(voice: VoiceData) = with(binding) {
-            name.text = voice.name
+        private val binding = ItemBinding.bind(itemView)
+        fun bind(voice: SecondVoiceData, delegate: (SecondVoiceData) -> Unit) = with(binding) {
             Glide.with(itemView).load(voice.image).into(image)
+            itemView.setOnClickListener { delegate(voice) }
         }
 
     }
@@ -30,11 +27,7 @@ class VoiceAdapter(val data: List<VoiceData>) : RecyclerView.Adapter<VoiceAdapte
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(data[position])
-        holder.itemView.setOnClickListener {
-            val soundToPlay = soundEngine.load(holder.itemView.context, voiceList[position], 1)
-            soundEngine.play(soundToPlay, 6.0F, 6.0F, 1, 0, 1F)
-        }
+        holder.bind(data[position], delegate)
     }
 
     override fun getItemCount(): Int = data.size

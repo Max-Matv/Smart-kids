@@ -3,6 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/drawable/correct_anim.xml" value="0.2703125" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/drawable/ic_animalvoice.xml" value="0.2703125" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/drawable/ic_animalwhosay.xml" value="0.2703125" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/drawable/ic_correct.xml" value="0.2703125" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/drawable/ic_imagebotfive.xml" value="0.2703125" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/drawable/ic_imagebotfour.xml" value="0.2703125" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/drawable/ic_imagebotthree.xml" value="0.2703125" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/drawable/ic_imagebottwo.xml" value="0.2703125" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/drawable/ic_incorrect.xml" value="0.2703125" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/drawable/ic_rectangle.xml" value="0.2703125" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/drawable/ic_repeat.xml" value="0.2703125" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/drawable/ic_stroke.xml" value="0.2703125" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/drawable/ic_triangle.xml" value="0.2703125" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/drawable/ic_volume.xml" value="0.2703125" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/drawable/repeat.xml" value="0.2703125" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/drawable/splash_screen.xml" value="0.2703125" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/layout/fragment_animal_voice.xml" value="0.25416666666666665" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/layout/fragment_another.xml" value="0.25416666666666665" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/layout/fragment_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/layout/fragment_right_place.xml" value="0.25416666666666665" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/layout/fragment_second_animal_voice.xml" value="0.25416666666666665" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/layout/item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Smart-kids/Smart-kids/Smartkids/app/src/main/res/mipmap-anydpi-v26/app.xml" value="0.2703125" />
         <entry key="..\:/Smartkids/app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.26615384615384613" />
         <entry key="..\:/Smartkids/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26615384615384613" />
         <entry key="..\:/Smartkids/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.26615384615384613" />
