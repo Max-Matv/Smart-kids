@@ -45,7 +45,7 @@ class MainFragment : Fragment() {
                 ?.commit()
         }
         Glide.with(view).load(R.drawable.ic_twotone_widgets_24).into(binding!!.figure)
-        binding?.whoSay?.setOnClickListener {
+        binding?.figure?.setOnClickListener {
             activity?.supportFragmentManager
                 ?.beginTransaction()
                 ?.setCustomAnimations(R.anim.scale, R.anim.fade_out)

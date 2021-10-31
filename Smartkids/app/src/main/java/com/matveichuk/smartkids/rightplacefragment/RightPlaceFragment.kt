@@ -6,7 +6,6 @@ import android.content.ClipDescription
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Point
-import android.os.Binder
 import android.os.Build
 import android.os.Bundle
 import android.view.DragEvent
@@ -15,9 +14,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.res.ResourcesCompat
-import com.matveichuk.smartkids.R
 
 import com.matveichuk.smartkids.databinding.FragmentRightPlaceBinding
 

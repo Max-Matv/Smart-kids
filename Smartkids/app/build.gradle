@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -39,6 +40,11 @@ dependencies {
     implementation 'org.koin:koin-android:1.0.2'
     implementation 'org.koin:koin-android-viewmodel:1.0.2'
     implementation 'org.koin:koin-androidx-scope:1.0.2'
+    //Room
+    implementation "androidx.room:room-ktx:2.3.0"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt "androidx.room:room-compiler:2.3.0"
+    androidTestImplementation "androidx.room:room-testing:2.3.0"
 
     implementation 'com.google.android.gms:play-services-ads:20.4.0'
     //Glide
