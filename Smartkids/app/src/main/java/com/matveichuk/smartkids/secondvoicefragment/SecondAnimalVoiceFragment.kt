@@ -1,5 +1,6 @@
 package com.matveichuk.smartkids.secondvoicefragment
 
+
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -10,17 +11,20 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.green
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.matveichuk.smartkids.R
 import com.matveichuk.smartkids.SoundEngine.SoundEngine
 import com.matveichuk.smartkids.databinding.FragmentSecondAnimalVoiceBinding
-import com.matveichuk.smartkids.mainfragment.MainFragment
+import com.matveichuk.smartkids.db.Score
+import com.matveichuk.smartkids.db.ScoreApplication
+import com.matveichuk.smartkids.db.ScoreViewModel
+import com.matveichuk.smartkids.db.ScoreViewModelFactory
 import com.matveichuk.smartkids.secondvoicefragment.adapter.SecondVoiceAdapter
-import com.matveichuk.smartkids.secondvoicefragment.data.SecondVoice
 import com.matveichuk.smartkids.secondvoicefragment.viewmodel.SecondVoiceViewModel
-import kotlinx.coroutines.*
 
 
 class SecondAnimalVoiceFragment : Fragment() {
@@ -29,7 +33,10 @@ class SecondAnimalVoiceFragment : Fragment() {
     private var binding: FragmentSecondAnimalVoiceBinding? = null
     lateinit var voiceViewModel: SecondVoiceViewModel
     private var voiceId = (0..2).random()
-    private val coroutineScope = CoroutineScope(Dispatchers.Default)
+    private val scoreViewModel: ScoreViewModel by viewModels {
+        ScoreViewModelFactory((activity?.application as ScoreApplication).repository)
+    }
+    var index = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,41 +52,32 @@ class SecondAnimalVoiceFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding?.recyclerVoice?.layoutManager = GridLayoutManager(context, 3)
         val context = this.context as AppCompatActivity
+        scoreViewModel.allScore.observe(viewLifecycleOwner, {
+            Log.e("TAG", it.toString())
+            binding?.score?.text = it?.size.toString()
+            index = it.size
+        })
         voiceViewModel =
             activity.run { ViewModelProviders.of(context)[SecondVoiceViewModel::class.java] }
-
         voiceViewModel.liveData.observe(viewLifecycleOwner, {
             binding?.recyclerVoice?.adapter = SecondVoiceAdapter(it) { voice ->
                 if (voiceViewModel.voiceListData.indexOf(voice) == voiceId) {
                     play(R.raw.correct)
                     animation(R.anim.scale)
                     Glide.with(view).load(R.drawable.ic_correct).into(binding!!.animalImage)
-                    uiDisable()
-                    coroutineScope.launch {
-                        launch {
-                            do {
-                                voiceViewModel.voiceListData.replaceAll { SecondVoice.getData().random() }
-                            }while (voiceViewModel.voiceListData[0] == voiceViewModel.voiceListData[1] ||
-                                voiceViewModel.voiceListData[0] == voiceViewModel.voiceListData[2] ||
-                                voiceViewModel.voiceListData[1] == voiceViewModel.voiceListData[2])
-                        }
-                           coroutineScope{
-                              launch {  delay(3000)
-                                  activity?.supportFragmentManager
-                                      ?.beginTransaction()
-                                      ?.setCustomAnimations(R.anim.scale, R.anim.fade_out)
-                                      ?.replace(R.id.recycleList, SecondAnimalVoiceFragment())
-                                      ?.commit() }
-                           }
-                    }
-
+                    voiceViewModel.createList()
+                    binding!!.animalImage.visibility = View.INVISIBLE
+                    //TODO вопрос anim
+                    binding?.recyclerVoice?.adapter?.notifyDataSetChanged()
+                    voiceId = (0..2).random()
+                    index++
+                    scoreViewModel.insert(Score(index))
                 } else {
                     play(R.raw.incorrect)
                     animation(R.anim.scale)
                     Glide.with(view).load(R.drawable.ic_incorrect).into(binding!!.animalImage)
                 }
             }
-            val el = voiceViewModel.voiceListData[voiceId]
             play(voiceViewModel.voiceListData[voiceId].song)
             binding?.repeat?.setOnClickListener {
                 play(voiceViewModel.voiceListData[voiceId].song)
@@ -88,6 +86,7 @@ class SecondAnimalVoiceFragment : Fragment() {
     }
 
     private fun animation(anim: Int) {
+        binding?.animalImage?.visibility = View.VISIBLE
         AnimationUtils.loadAnimation(requireContext(), anim).also {
             binding?.animalImage?.startAnimation(it)
         }

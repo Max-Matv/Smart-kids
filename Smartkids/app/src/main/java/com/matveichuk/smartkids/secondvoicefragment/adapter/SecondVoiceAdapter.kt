@@ -1,5 +1,6 @@
 package com.matveichuk.smartkids.secondvoicefragment.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,7 @@ import com.matveichuk.smartkids.R
 import com.matveichuk.smartkids.databinding.ItemBinding
 import com.matveichuk.smartkids.secondvoicefragment.data.SecondVoiceData
 
-class SecondVoiceAdapter(val data: List<SecondVoiceData>, val delegate: (SecondVoiceData) -> Unit) :
+class SecondVoiceAdapter(val data: MutableList<SecondVoiceData>, val delegate: (SecondVoiceData) -> Unit) :
     RecyclerView.Adapter<SecondVoiceAdapter.MyViewHolder>() {
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -31,4 +32,5 @@ class SecondVoiceAdapter(val data: List<SecondVoiceData>, val delegate: (SecondV
     }
 
     override fun getItemCount(): Int = data.size
+
 }

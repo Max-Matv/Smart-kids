@@ -12,12 +12,12 @@ class VoiceViewModel : ViewModel() {
     val livedata: MutableLiveData<List<VoiceData>> = MutableLiveData()
 
     init {
-       viewModelScope.launch(Dispatchers.Main){
+       viewModelScope.launch(Dispatchers.IO){
            setup()
        }
     }
 
     private fun setup() {
-        livedata.value = voice.getData()
+        livedata.postValue(voice.getData())
     }
 }
