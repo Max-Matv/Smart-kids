@@ -3,7 +3,6 @@ package com.matveichuk.smartkids.secondvoicefragment
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +24,7 @@ import com.matveichuk.smartkids.db.ScoreViewModel
 import com.matveichuk.smartkids.db.ScoreViewModelFactory
 import com.matveichuk.smartkids.secondvoicefragment.adapter.SecondVoiceAdapter
 import com.matveichuk.smartkids.secondvoicefragment.viewmodel.SecondVoiceViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class SecondAnimalVoiceFragment : Fragment() {

@@ -1,16 +1,26 @@
 package com.matveichuk.smartkids.db
 
 import android.app.Application
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
+import com.matveichuk.smartkids.di.*
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
 
 class ScoreApplication : Application() {
-    private val applicationScope = CoroutineScope(SupervisorJob())
-    private val database by lazy { ScoreDatabase.getDatabase(this, applicationScope) }
-    val repository by lazy { ScoreRepository(database.scoreDao()) }
 
     override fun onCreate() {
         super.onCreate()
-        //start koin
+       startKoin{
+           androidLogger()
+           androidContext(this@ScoreApplication)
+           modules(
+               db,
+               dbViewModel,
+               repository,
+               secondViewModel,
+               networkModule,
+//               catViewModel
+           )
+       }
     }
 }
