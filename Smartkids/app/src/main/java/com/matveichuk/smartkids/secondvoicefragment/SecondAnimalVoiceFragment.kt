@@ -3,6 +3,7 @@ package com.matveichuk.smartkids.secondvoicefragment
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,7 @@ import com.matveichuk.smartkids.db.ScoreViewModel
 import com.matveichuk.smartkids.db.ScoreViewModelFactory
 import com.matveichuk.smartkids.secondvoicefragment.adapter.SecondVoiceAdapter
 import com.matveichuk.smartkids.secondvoicefragment.viewmodel.SecondVoiceViewModel
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -67,7 +69,6 @@ class SecondAnimalVoiceFragment : Fragment() {
                     Glide.with(view).load(R.drawable.ic_correct).into(binding!!.animalImage)
                     voiceViewModel.createList()
                     binding!!.animalImage.visibility = View.INVISIBLE
-                    //TODO вопрос anim
                     binding?.recyclerVoice?.adapter?.notifyDataSetChanged()
                     voiceId = (0..2).random()
                     index++
@@ -98,10 +99,6 @@ class SecondAnimalVoiceFragment : Fragment() {
         soundEngine.play(soundToPlay, 6.0F, 6.0F, 1, 0, 1F)
     }
 
-    private fun uiDisable() {
-        binding?.repeat?.visibility = View.GONE
-        binding?.recyclerVoice?.visibility = View.GONE
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

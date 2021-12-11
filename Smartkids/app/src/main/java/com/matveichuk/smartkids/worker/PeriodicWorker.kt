@@ -5,18 +5,13 @@ import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
 import androidx.core.app.NotificationCompat
-import androidx.lifecycle.LiveData
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.matveichuk.smartkids.R
-import com.matveichuk.smartkids.db.Score
-import com.matveichuk.smartkids.db.ScoreDao
-import com.matveichuk.smartkids.db.ScoreRepository
+import com.matveichuk.smartkids.db.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.withIndex
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -29,8 +24,12 @@ class PeriodicWorker(appContext: Context, params: WorkerParameters) : Worker(app
 
     override fun doWork(): Result {
         val num: Flow<List<Score>> = scoreDao.getScore()
+        GlobalScope.launch(Dispatchers.Main) {
+            num.map { it?.toList().size.toString() }
+            createNotification("Your score $num")
+        }
 
-        createNotification("Your score ${scoreDao.getScore()}")
+
         return Result.success()
     }
 
@@ -52,4 +51,5 @@ class PeriodicWorker(appContext: Context, params: WorkerParameters) : Worker(app
         notificationManager.notify(1, notificationBuilder.build())
 
     }
+
 }

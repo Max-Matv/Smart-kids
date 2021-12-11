@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class VoiceViewModel : ViewModel() {
-    val livedata: MutableLiveData<List<VoiceData>> = MutableLiveData()
+    val livedata = MutableLiveData<List<VoiceData>>()
 
     init {
        viewModelScope.launch(Dispatchers.IO){
@@ -17,7 +17,7 @@ class VoiceViewModel : ViewModel() {
        }
     }
 
-    private fun setup() {
+      private fun setup() {
         livedata.postValue(voice.getData())
     }
 }

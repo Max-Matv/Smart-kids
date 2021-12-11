@@ -22,6 +22,7 @@ import kotlinx.coroutines.Dispatchers
 
 class MainActivity : AppCompatActivity() {
 
+    private val locationViewModel: AnimalLocationViewModel by viewModel()
     var context: Context = this
     lateinit var mAdView: AdView
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +38,8 @@ class MainActivity : AppCompatActivity() {
         if (isNetworkAvailable(context)) {
             error.visibility = View.GONE
             btCheck.visibility = View.GONE
-            supportFragmentManager.beginTransaction()
+            supportFragmentManager
+                .beginTransaction()
                 .replace(R.id.recycleList, MainFragment())
                 .commit()
         } else {

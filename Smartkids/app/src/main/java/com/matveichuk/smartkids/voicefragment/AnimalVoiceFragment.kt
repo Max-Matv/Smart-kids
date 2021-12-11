@@ -15,11 +15,12 @@ import com.matveichuk.smartkids.databinding.FragmentAnimalVoiceBinding
 import com.matveichuk.smartkids.voicefragment.adpter.VoiceAdapter
 
 import com.matveichuk.smartkids.voicefragment.viewmodel.VoiceViewModel
+import org.koin.android.ext.android.inject
 
 
 class AnimalVoiceFragment : Fragment() {
     private var binding: FragmentAnimalVoiceBinding? = null
-    lateinit var voiceViewModel: VoiceViewModel
+    private val voiceViewModel: VoiceViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,8 +34,6 @@ class AnimalVoiceFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         binding?.recycler?.layoutManager = GridLayoutManager(context, 2)
-        val context = this.context as AppCompatActivity
-        voiceViewModel = activity.run { ViewModelProviders.of(context)[VoiceViewModel::class.java] }
         voiceViewModel.livedata.observe(viewLifecycleOwner, {
             binding?.progress?.visibility = View.GONE
             binding?.recycler?.adapter = VoiceAdapter(it)

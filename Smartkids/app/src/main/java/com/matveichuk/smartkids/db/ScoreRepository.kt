@@ -3,6 +3,7 @@ package com.matveichuk.smartkids.db
 
 import kotlinx.coroutines.flow.Flow
 
+
 class ScoreRepository(private val scoreDao: ScoreDao) {
     val allScore: Flow<List<Score>> = scoreDao.getScore()
 

@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class SecondVoiceViewModel : ViewModel() {
     var voiceListData = MutableList(3) { SecondVoice.getData().random() }.toSet().toMutableList()
-    val liveData: MutableLiveData<MutableList<SecondVoiceData>> = MutableLiveData()
+    val liveData = MutableLiveData<MutableList<SecondVoiceData>>()
 
     init {
         viewModelScope.launch(Dispatchers.IO) {

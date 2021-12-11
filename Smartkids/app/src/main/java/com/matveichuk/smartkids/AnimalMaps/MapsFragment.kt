@@ -1,31 +1,32 @@
 package com.matveichuk.smartkids.AnimalMaps
 
 import androidx.fragment.app.Fragment
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LifecycleOwner
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.matveichuk.smartkids.AnimalMaps.AnimalLocationVIewModel.AnimalLocationViewModel
 import com.matveichuk.smartkids.R
-import com.matveichuk.smartkids.databinding.FragmentApiBinding
 import com.matveichuk.smartkids.databinding.FragmentMapsBinding
 
 class MapsFragment : Fragment() {
 
+    private val locationViewModel: AnimalLocationViewModel by activityViewModels()
     private var binding: FragmentMapsBinding? = null
 
-    private val callback = OnMapReadyCallback { googleMap ->
 
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+    private val callback = OnMapReadyCallback { googleMap ->
+        locationViewModel.idMap.observe(activity as LifecycleOwner, {
+            googleMap.addPolygon(
+                it
+            )
+
+        })
+
     }
 
     override fun onCreateView(
@@ -43,6 +44,7 @@ class MapsFragment : Fragment() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

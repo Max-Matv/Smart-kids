@@ -2,7 +2,6 @@ package com.matveichuk.smartkids.Apifragment.api
 
 import com.matveichuk.smartkids.Apifragment.api.facts.Data
 import io.reactivex.Observable
-import okhttp3.Interceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -12,8 +11,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 
 
 interface ApiCat {
-    @GET("rest/")
-    fun getData(): Observable<Cat>
+
     @GET("facts")
     fun getDataFact(): Observable<Data>
 }
@@ -21,7 +19,9 @@ interface ApiCat {
 object ServiceBuilder {
     private val log = run {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
-        httpLoggingInterceptor.apply { httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY }
+        httpLoggingInterceptor.apply {
+            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        }
     }
 
     private val client = OkHttpClient.Builder()
@@ -29,7 +29,6 @@ object ServiceBuilder {
         .build()
 
 
-    val BASE_URL = "https://thatcopy.pw/catapi/"
     val BASE_URL_1 = "https://cat-fact.herokuapp.com/"
 
 

@@ -1,24 +1,27 @@
-package com.matveichuk.smartkids.secondvoicefragment.adapter
+package com.matveichuk.smartkids.AnimalMaps.adpter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.matveichuk.smartkids.AnimalMaps.data.LocationData
 import com.matveichuk.smartkids.R
 import com.matveichuk.smartkids.databinding.ItemBinding
-import com.matveichuk.smartkids.secondvoicefragment.data.SecondVoiceData
 
-class SecondVoiceAdapter(val data: MutableList<SecondVoiceData>, val delegate: (SecondVoiceData) -> Unit) :
-    RecyclerView.Adapter<SecondVoiceAdapter.MyViewHolder>() {
+class AnimalLocationAdapter(
+    val data: MutableList<LocationData>,
+    val delegate: (LocationData) -> Unit
+) : RecyclerView.Adapter<AnimalLocationAdapter.MyViewHolder>() {
+
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ItemBinding.bind(itemView)
-        fun bind(voice: SecondVoiceData, delegate: (SecondVoiceData) -> Unit) = with(binding) {
-            Glide.with(itemView).load(voice.image).into(image)
-            itemView.setOnClickListener { delegate(voice) }
+        fun bind(location: LocationData, delegate: (LocationData) -> Unit) = with(binding) {
+            Glide.with(itemView).load(location.image).into(image)
+            name.text = location.name
+            itemView.setOnClickListener { delegate(location) }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -31,5 +34,4 @@ class SecondVoiceAdapter(val data: MutableList<SecondVoiceData>, val delegate: (
     }
 
     override fun getItemCount(): Int = data.size
-
 }
