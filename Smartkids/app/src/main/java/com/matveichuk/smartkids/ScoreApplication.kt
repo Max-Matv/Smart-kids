@@ -18,7 +18,6 @@ class ScoreApplication : Application() {
                 dbViewModel,
                 repository,
                 secondViewModel,
-                networkModule,
                 mapViewModel,
                 mainViewModel,
                 voiceViewModel

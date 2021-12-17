@@ -1,7 +1,6 @@
 package com.matveichuk.smartkids.mainfragment.data
 
 import com.matveichuk.smartkids.AnimalMaps.AnimalLocationFragment
-import com.matveichuk.smartkids.Apifragment.ApiFragment
 import com.matveichuk.smartkids.R
 import com.matveichuk.smartkids.rightplacefragment.RightPlaceFragment
 import com.matveichuk.smartkids.secondvoicefragment.SecondAnimalVoiceFragment
@@ -13,7 +12,6 @@ object dataMain {
             MainData(R.drawable.ic_animalvoice,"Голоса животных?", AnimalVoiceFragment()),
             MainData(R.drawable.ic_animalwhosay, "Кто сказал?", SecondAnimalVoiceFragment()),
             MainData(R.drawable.ic_location, "Кто где живет?", AnimalLocationFragment()),
-            MainData(R.drawable.ic_catfacts, "Cat facts", ApiFragment()),
             MainData(R.drawable.ic_twotone_widgets_24, "Фигуры", RightPlaceFragment())
         )
     }

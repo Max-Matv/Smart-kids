@@ -10,34 +10,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.graphics.green
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.matveichuk.smartkids.R
 import com.matveichuk.smartkids.SoundEngine.SoundEngine
 import com.matveichuk.smartkids.databinding.FragmentSecondAnimalVoiceBinding
 import com.matveichuk.smartkids.db.Score
-import com.matveichuk.smartkids.db.ScoreApplication
 import com.matveichuk.smartkids.db.ScoreViewModel
-import com.matveichuk.smartkids.db.ScoreViewModelFactory
 import com.matveichuk.smartkids.secondvoicefragment.adapter.SecondVoiceAdapter
 import com.matveichuk.smartkids.secondvoicefragment.viewmodel.SecondVoiceViewModel
 import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class SecondAnimalVoiceFragment : Fragment() {
 
     private var soundEngine = SoundEngine()
     private var binding: FragmentSecondAnimalVoiceBinding? = null
-    lateinit var voiceViewModel: SecondVoiceViewModel
+    private val voiceViewModel: SecondVoiceViewModel by inject()
     private var voiceId = (0..2).random()
-    private val scoreViewModel: ScoreViewModel by viewModels {
-        ScoreViewModelFactory((activity?.application as ScoreApplication).repository)
-    }
+    private val scoreViewModel: ScoreViewModel by inject()
     var index = 0
 
     override fun onCreateView(
@@ -53,14 +44,11 @@ class SecondAnimalVoiceFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.recyclerVoice?.layoutManager = GridLayoutManager(context, 3)
-        val context = this.context as AppCompatActivity
         scoreViewModel.allScore.observe(viewLifecycleOwner, {
             Log.e("TAG", it.toString())
             binding?.score?.text = it?.size.toString()
             index = it.size
         })
-        voiceViewModel =
-            activity.run { ViewModelProviders.of(context)[SecondVoiceViewModel::class.java] }
         voiceViewModel.liveData.observe(viewLifecycleOwner, {
             binding?.recyclerVoice?.adapter = SecondVoiceAdapter(it) { voice ->
                 if (voiceViewModel.voiceListData.indexOf(voice) == voiceId) {

@@ -14,11 +14,13 @@ import com.matveichuk.smartkids.voicefragment.AnimalVoiceFragment
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+import com.matveichuk.smartkids.AnimalMaps.AnimalLocationVIewModel.AnimalLocationViewModel
 import com.matveichuk.smartkids.mainfragment.MainFragment
 import com.matveichuk.smartkids.rightplacefragment.RightPlaceFragment
 import com.matveichuk.smartkids.secondvoicefragment.SecondAnimalVoiceFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,6 +31,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         MobileAds.initialize(this) {}
+        locationViewModel.idMap.observe(this, {
+
+        })
         mAdView = findViewById(R.id.adView)
         val adRequest = AdRequest.Builder().build()
         val error = findViewById<TextView>(R.id.error)
