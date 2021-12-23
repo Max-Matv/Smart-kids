@@ -2,7 +2,6 @@ package com.matveichuk.smartkids.di
 
 import android.app.Application
 import androidx.room.Room
-import com.matveichuk.smartkids.AnimalMaps.AnimalLocationVIewModel.AnimalLocationViewModel
 import com.matveichuk.smartkids.db.ScoreDao
 import com.matveichuk.smartkids.db.ScoreDatabase
 import com.matveichuk.smartkids.db.ScoreRepository
@@ -34,9 +33,6 @@ val repository = module {
 }
 val secondViewModel = module {
     viewModel { SecondVoiceViewModel() }
-}
-val mapViewModel = module {
-    viewModel { AnimalLocationViewModel() }
 }
 val mainViewModel = module {
     viewModel { MainViewModel() }

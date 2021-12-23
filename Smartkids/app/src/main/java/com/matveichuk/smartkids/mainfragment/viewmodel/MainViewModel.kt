@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.matveichuk.smartkids.mainfragment.data.MainData
-import com.matveichuk.smartkids.mainfragment.data.dataMain
+import com.matveichuk.smartkids.mainfragment.data.DataMain
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -18,6 +18,6 @@ class MainViewModel : ViewModel() {
     }
 
     private fun setup() {
-        mainLiveData.postValue(dataMain.getData())
+        mainLiveData.postValue(DataMain.getData())
     }
 }

@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.tabs.TabLayoutMediator
 import com.matveichuk.smartkids.R
 import com.matveichuk.smartkids.databinding.FragmentMainBinding
 import com.matveichuk.smartkids.mainfragment.adapter.MainAdapter
@@ -16,7 +16,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainFragment : Fragment() {
 
     private var binding: FragmentMainBinding? = null
-    private val mainViewModel : MainViewModel by viewModel()
+    private val mainViewModel: MainViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,11 +29,13 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.rcMain?.layoutManager = GridLayoutManager(context, 2)
+
         mainViewModel.mainLiveData.observe(viewLifecycleOwner, {
             binding?.rcMain?.adapter = MainAdapter(it) { delegate ->
                 goToFragment(delegate.fragment)
             }
+            TabLayoutMediator(binding!!.tab, binding!!.rcMain){tab, position ->
+            }.attach()
         })
     }
 
@@ -50,7 +52,6 @@ class MainFragment : Fragment() {
         super.onDestroyView()
         binding = null
     }
-
 
 
 }

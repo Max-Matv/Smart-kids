@@ -9,31 +9,32 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import androidx.annotation.RequiresApi
-import com.matveichuk.smartkids.voicefragment.AnimalVoiceFragment
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
-import com.matveichuk.smartkids.AnimalMaps.AnimalLocationVIewModel.AnimalLocationViewModel
+import com.matveichuk.smartkids.databinding.ActivityMainBinding
+import com.matveichuk.smartkids.db.ScoreViewModel
 import com.matveichuk.smartkids.mainfragment.MainFragment
-import com.matveichuk.smartkids.rightplacefragment.RightPlaceFragment
-import com.matveichuk.smartkids.secondvoicefragment.SecondAnimalVoiceFragment
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
 
-    private val locationViewModel: AnimalLocationViewModel by viewModel()
+    private var binding: ActivityMainBinding? = null
     var context: Context = this
     lateinit var mAdView: AdView
+    private val scoreViewModel: ScoreViewModel by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        MobileAds.initialize(this) {}
-        locationViewModel.idMap.observe(this, {
-
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
+        binding?.toolbar?.setNavigationOnClickListener {
+            onBackPressed()
+        }
+        scoreViewModel.allScore.observe(this,{
+            binding?.toolbar?.title = it.size.toString()
         })
+        MobileAds.initialize(this) {}
         mAdView = findViewById(R.id.adView)
         val adRequest = AdRequest.Builder().build()
         val error = findViewById<TextView>(R.id.error)
@@ -56,19 +57,15 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-    override fun onBackPressed(){
-        supportFragmentManager
-            .beginTransaction()
-            .setCustomAnimations(R.anim.to_right, R.anim.fade_out)
-            .replace(R.id.recycleList, MainFragment())
-            .commit()
-    }
+
 
     private fun isNetworkAvailable(context: Context?): Boolean {
         if (context == null) return false
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            val capabilities =
+                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
             if (capabilities != null) {
                 when {
                     capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
@@ -89,5 +86,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return false
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
     }
 }

@@ -45,8 +45,6 @@ class SecondAnimalVoiceFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding?.recyclerVoice?.layoutManager = GridLayoutManager(context, 3)
         scoreViewModel.allScore.observe(viewLifecycleOwner, {
-            Log.e("TAG", it.toString())
-            binding?.score?.text = it?.size.toString()
             index = it.size
         })
         voiceViewModel.liveData.observe(viewLifecycleOwner, {

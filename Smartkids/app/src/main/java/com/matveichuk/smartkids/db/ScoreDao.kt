@@ -1,7 +1,6 @@
 package com.matveichuk.smartkids.db
 
 import androidx.room.*
-import io.reactivex.Flowable
 import kotlinx.coroutines.flow.Flow
 
 @Dao
