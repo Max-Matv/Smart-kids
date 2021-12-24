@@ -18,6 +18,7 @@ class MainAdapter(val data: List<MainData>, val delegate: (MainData) -> Unit) :
         private val binding = ViewpagerItemBinding.bind(itemView)
         fun bind(mainData: MainData, delegate: (MainData) -> Unit) = with(binding) {
             name.text = mainData.name
+            title.text = mainData.title
             itemView.setBackgroundResource(mainData.color)
             image.setBackgroundResource(mainData.background)
             Glide.with(itemView).load(mainData.image).into(image)

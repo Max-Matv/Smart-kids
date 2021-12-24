@@ -13,21 +13,24 @@ object DataMain {
                 "Голоса животных",
                 AnimalVoiceFragment(),
                 R.color.tea,
-                R.drawable.tea_circle
+                R.drawable.tea_circle,
+                "Узнай как разговаривают животные"
             ),
             MainData(
                 R.drawable.ic_animalwhosay,
                 "Кто сказал?",
                 SecondAnimalVoiceFragment(),
                 R.color.peach,
-                R.drawable.peach_circle
+                R.drawable.peach_circle,
+                "Угадай животное по звуку!"
             ),
             MainData(
                 R.drawable.ic_figure,
                 "Фигуры",
                 RightPlaceFragment(),
                 R.color.windows_eight,
-                R.drawable.windows_circle
+                R.drawable.windows_circle,
+                "Расставь фигуры по своим местам"
             )
         )
     }
