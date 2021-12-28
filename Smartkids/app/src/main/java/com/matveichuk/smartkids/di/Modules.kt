@@ -2,6 +2,8 @@ package com.matveichuk.smartkids.di
 
 import android.app.Application
 import androidx.room.Room
+import com.matveichuk.smartkids.AnimaFood.ViewModel.FoodViewModel
+import com.matveichuk.smartkids.SecondAnimalFood.ViewModel.SecondFoodViewModel
 import com.matveichuk.smartkids.db.ScoreDao
 import com.matveichuk.smartkids.db.ScoreDatabase
 import com.matveichuk.smartkids.db.ScoreRepository
@@ -39,4 +41,10 @@ val mainViewModel = module {
 }
 val voiceViewModel = module {
     viewModel { VoiceViewModel() }
+}
+val foodViewModel = module {
+    viewModel { FoodViewModel() }
+}
+val secondFoodViewModel = module {
+    viewModel { SecondFoodViewModel() }
 }

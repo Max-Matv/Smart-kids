@@ -43,7 +43,7 @@ class MainFragment : Fragment() {
         activity?.supportFragmentManager
             ?.beginTransaction()
             ?.setCustomAnimations(R.anim.scale, R.anim.fade_out)
-            ?.addToBackStack("n")
+            ?.addToBackStack(null)
             ?.replace(R.id.recycleList, fragment)
             ?.commit()
     }

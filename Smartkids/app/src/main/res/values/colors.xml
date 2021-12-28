@@ -15,5 +15,8 @@
     <color name="windows_eight">#B764D4</color>
     <color name="windows_eight_dark">#A81BD8</color>
     <color name="grey">#B8B3BA</color>
+    <color name="flower">#6BDDE8</color>
+    <color name="flower_dark">#0DA6B5</color>
+    <color name="red">#FF0000</color>
 
 </resources>

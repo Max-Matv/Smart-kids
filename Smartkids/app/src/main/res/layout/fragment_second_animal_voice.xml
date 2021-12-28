@@ -3,8 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/peach"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".secondvoicefragment.SecondAnimalVoiceFragment">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:text="Кто это сказал?"
+        android:textColor="@color/white"
+        android:fontFamily="@font/comic_cat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/repeat"
+        android:layout_marginBottom="4dp"/>
 
     <ImageView
         android:id="@+id/animalImage"
@@ -19,8 +34,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:icon="@drawable/ic_repeat"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+        app:cornerRadius="1000dp"
+        app:strokeColor="@color/white"
         android:text="повтор"
+        android:textColor="@color/white"
+        style="?attr/materialButtonOutlinedStyle"
+        android:fontFamily="@font/japari_sans"
         app:layout_constraintTop_toBottomOf="@+id/animalImage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

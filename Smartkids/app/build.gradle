@@ -14,8 +14,8 @@ android {
         applicationId "com.matveichuk.smartkids"
         minSdk 24
         targetSdk 30
-        versionCode 3
-        versionName '1.1'
+        versionCode 4
+        versionName '2.0'
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -45,21 +45,25 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.0'
     //RxAndroid
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    // Circle imageview
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     //koin
     implementation 'org.koin:koin-android:2.0.0-rc-2'
     implementation 'org.koin:koin-androidx-viewmodel:2.0.0-rc-2'
     implementation 'org.koin:koin-androidx-scope:2.0.0-rc-2'
     //Room
-    implementation "androidx.room:room-ktx:2.3.0"
+    implementation "androidx.room:room-ktx:2.4.0"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.gms:play-services-maps:18.0.0'
-    kapt "androidx.room:room-compiler:2.3.0"
-    androidTestImplementation "androidx.room:room-testing:2.3.0"
+    implementation 'com.google.android.gms:play-services-maps:18.0.1'
+    kapt "androidx.room:room-compiler:2.4.0"
+    androidTestImplementation "androidx.room:room-testing:2.4.0"
 
     implementation 'com.google.android.gms:play-services-ads:20.4.0'
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
+    //Drag and drop
+    implementation 'androidx.draganddrop:draganddrop:1.0.0-alpha02'
 
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")

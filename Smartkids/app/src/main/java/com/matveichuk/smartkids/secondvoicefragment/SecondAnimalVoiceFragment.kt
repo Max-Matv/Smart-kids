@@ -51,6 +51,7 @@ class SecondAnimalVoiceFragment : Fragment() {
             binding?.recyclerVoice?.adapter = SecondVoiceAdapter(it) { voice ->
                 if (voiceViewModel.voiceListData.indexOf(voice) == voiceId) {
                     play(R.raw.correct)
+                    uiDisable()
                     animation(R.anim.scale)
                     Glide.with(view).load(R.drawable.ic_correct).into(binding!!.animalImage)
                     voiceViewModel.createList()
@@ -65,6 +66,7 @@ class SecondAnimalVoiceFragment : Fragment() {
                     Glide.with(view).load(R.drawable.ic_incorrect).into(binding!!.animalImage)
                 }
             }
+            uiEnable()
             play(voiceViewModel.voiceListData[voiceId].song)
             binding?.repeat?.setOnClickListener {
                 play(voiceViewModel.voiceListData[voiceId].song)
@@ -85,6 +87,17 @@ class SecondAnimalVoiceFragment : Fragment() {
         soundEngine.play(soundToPlay, 6.0F, 6.0F, 1, 0, 1F)
     }
 
+    private fun uiDisable() {
+        binding?.repeat?.visibility = View.GONE
+        binding?.recyclerVoice?.visibility = View.GONE
+        binding?.title?.visibility = View.GONE
+    }
+
+    private fun uiEnable() {
+        binding?.repeat?.visibility = View.VISIBLE
+        binding?.recyclerVoice?.visibility = View.VISIBLE
+        binding?.title?.visibility = View.VISIBLE
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

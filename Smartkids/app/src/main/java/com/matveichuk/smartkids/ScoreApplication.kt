@@ -19,7 +19,9 @@ class ScoreApplication : Application() {
                 repository,
                 secondViewModel,
                 mainViewModel,
-                voiceViewModel
+                voiceViewModel,
+                foodViewModel,
+                secondFoodViewModel
             )
         }
     }

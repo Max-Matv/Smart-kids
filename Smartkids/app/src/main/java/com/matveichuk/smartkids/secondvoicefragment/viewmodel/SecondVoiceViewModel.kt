@@ -28,7 +28,7 @@ class SecondVoiceViewModel : ViewModel() {
     @RequiresApi(Build.VERSION_CODES.N)
     fun createList(){
         viewModelScope.launch {
-            delay(1000)
+            delay(1500)
             do {
                 voiceListData.replaceAll {
                     SecondVoice.getData().random()

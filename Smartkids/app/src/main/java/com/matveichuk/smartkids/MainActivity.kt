@@ -6,6 +6,7 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -30,6 +31,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding!!.root)
         binding?.toolbar?.setNavigationOnClickListener {
             onBackPressed()
+        }
+        binding?.toolbar?.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId) {
+                R.id.home -> {
+                   recreate()
+                    true
+                }
+                else -> false
+            }
         }
         scoreViewModel.allScore.observe(this,{
             binding?.toolbar?.title = it.size.toString()
@@ -57,7 +67,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
 
     private fun isNetworkAvailable(context: Context?): Boolean {
         if (context == null) return false
