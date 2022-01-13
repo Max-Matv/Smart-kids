@@ -35,7 +35,10 @@ class MainActivity : AppCompatActivity() {
         binding?.toolbar?.setOnMenuItemClickListener { menuItem ->
             when(menuItem.itemId) {
                 R.id.home -> {
-                   recreate()
+                   supportFragmentManager
+                       .beginTransaction()
+                       .replace(R.id.recycleList, MainFragment())
+                       .commit()
                     true
                 }
                 else -> false

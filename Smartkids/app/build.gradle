@@ -14,8 +14,8 @@ android {
         applicationId "com.matveichuk.smartkids"
         minSdk 24
         targetSdk 30
-        versionCode 4
-        versionName '2.0'
+        versionCode 6
+        versionName '2.2'
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
